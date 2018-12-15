@@ -4,8 +4,8 @@ import s4.specification.*;
 
 /*
 interface FrequencerInterface {     // This interface provides the design for frequency counter.
-    void setTarget(byte[]  target); // set the data to search.
-    void setSpace(byte[]  space);  // set the data to be searched target from.
+    /void setTarget(byte[]  target); // set the data to search.
+    /void setSpace(byte[]  space);  // set the data to be searched target from.
     int frequency(); //It return -1, when TARGET is not set or TARGET's length is zero
                     //Otherwise, it return 0, when SPACE is not set or Space's length is zero
                     //Otherwise, get the frequency of TAGET in SPACE
@@ -34,18 +34,26 @@ public class TestCase {
 	try {
 	    FrequencerInterface  myObject;
 	    int freq;
+	    int subfreq;
 	    System.out.println("checking s4.B183377.Frequencer");
 	    myObject = new s4.B183377.Frequencer();
 	    myObject.setSpace("Hi Ho Hi Ho".getBytes());
 	    myObject.setTarget("H".getBytes());
+	    
 	    freq = myObject.frequency();
-	    System.out.print("\"H\" in \"Hi Ho Hi Ho\" appears "+freq+" times. ");
-	    if(4 == freq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
+	    System.out.println("\"H\" in \"Hi Ho Hi Ho\" appears "+freq+" times. ");
+	    if(4 == freq) { System.out.println("OK"); } else {System.out.println("WRONG");}
+	    
+	    
+	    subfreq = myObject.subByteFrequency(1,10);
+	    System.out.println("\"H\" in \"Hi Ho Hi Ho\"between 1 to 10 appears "+subfreq+" times. ");
+	    if(3 == subfreq) { System.out.println("OK"); } else {System.out.println("WRONG");}
+	    
 	}
 	catch(Exception e) {
 	    System.out.println("Exception occurred: STOP");
 	}
-
+	
 	try {
 	    InformationEstimatorInterface myObject;
 	    double value;
