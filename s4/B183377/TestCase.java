@@ -98,20 +98,47 @@ public class TestCase {
 			System.out.println("checking s4.B183377.InformationEstimator");
 			myObject = new s4.B183377.InformationEstimator();
 			myObject.setSpace("3210321001230123".getBytes());
+
 			myObject.setTarget("0".getBytes());
 			value = myObject.estimation();
 			System.out.println(">0 " + value);
+
 			myObject.setTarget("01".getBytes());
 			value = myObject.estimation();
 			System.out.println(">01 " + value);
+
 			myObject.setTarget("0123".getBytes());
 			value = myObject.estimation();
 			System.out.println(">0123 " + value);
+
 			myObject.setTarget("00".getBytes());
 			value = myObject.estimation();
 			System.out.println(">00 " + value);
+
+			// target is not set
+			myObject.setTarget(null);
+			value = myObject.estimation();
+			System.out.println("> " + value);
+			if (value == 0.0) {
+				System.out.println("OK");
+			} else {
+				System.out.println("WRONG");
+			}
+
+			// space is not set
+			myObject.setSpace(null);
+			myObject.setTarget("01".getBytes());
+			value = myObject.estimation();
+			System.out.println(">01 " + value);
+			if (value == Double.MAX_VALUE) {
+				System.out.println("OK");
+			} else {
+				System.out.println("WRONG");
+			}
+			
 		} catch (Exception e) {
 			System.out.println("Exception occurred: STOP");
+			e.printStackTrace();
 		}
 
 	}
