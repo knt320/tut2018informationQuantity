@@ -67,7 +67,7 @@ public class TestCase {
 			} else {
 				System.out.println("WRONG");
 			}
-			// even number target with odd number space
+			// even number target with odd number space(white box test)
 			System.out.println("\"AA\" in \"AAAAA\" appears ");
 			myObject.setSpace("AAAAA".getBytes());
 			myObject.setTarget("AA".getBytes());
@@ -135,6 +135,12 @@ public class TestCase {
 			} else {
 				System.out.println("WRONG");
 			}
+			
+			//white box test
+			myObject.setSpace("41234".getBytes());
+			myObject.setTarget("43".getBytes());
+			value = myObject.estimation();
+			System.out.println(">43 "+value);
 			
 		} catch (Exception e) {
 			System.out.println("Exception occurred: STOP");
