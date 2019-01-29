@@ -200,7 +200,6 @@ public class Frequencer implements FrequencerInterface {
 		 */
 		int first = subByteStartIndex(start, end);
 		int last1 = subByteEndIndex(start, end);
-		System.out.println(last1 +","+first);
 		return last1 - first;
 	}
 
