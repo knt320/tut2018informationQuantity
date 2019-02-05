@@ -65,7 +65,7 @@ public class Frequencer implements FrequencerInterface {
 			int x = i;
 			int y = j;
 			while (true) {
-				if (x == mySpace.length-1 || y == mySpace.length-1) {
+				if (x == mySpace.length - 1 || y == mySpace.length - 1) {
 					x = mySpace.length - x;
 					y = mySpace.length - y;
 					if (x > y) {
@@ -78,13 +78,13 @@ public class Frequencer implements FrequencerInterface {
 				}
 				x++;
 				y++;
-				
+
 				if (mySpace[x] > mySpace[y]) {
 					return 1;
 				} else if (mySpace[x] < mySpace[y]) {
 					return -1;
 				}
-				
+
 			}
 		}
 		return 0;
@@ -99,18 +99,18 @@ public class Frequencer implements FrequencerInterface {
 		for (int i = 0; i < space.length; i++) {
 			suffixArray[i] = i;
 		}
-		
-	// Sorting is not implmented yet.
-	//
-	//
-	// **** Please write code here... ***
-	//
+
+		// Sorting is not implmented yet.
+		//
+		//
+		// **** Please write code here... ***
+		//
 		for (int i = 0; i < space.length; i++) {
-			for (int j = i+1; j < space.length; j++) {
-				if (this.suffixCompare(suffixArray[i], suffixArray[j])==1) {
-					int tmp=suffixArray[i];
-					suffixArray[i]=suffixArray[j];
-					suffixArray[j]=tmp;
+			for (int j = i + 1; j < space.length; j++) {
+				if (this.suffixCompare(suffixArray[i], suffixArray[j]) == 1) {
+					int tmp = suffixArray[i];
+					suffixArray[i] = suffixArray[j];
+					suffixArray[j] = tmp;
 				}
 			}
 		}
@@ -144,7 +144,9 @@ public class Frequencer implements FrequencerInterface {
 		// **** Please write code here... ***
 		//
 		for (int k = j; k < end; k++) {
-			if (myTarget[k] != mySpace[suffixArray[i] + k - j]) {
+			if (suffixArray[i] + k - j >= mySpace.length) {
+				return -1;
+			} else if (myTarget[k] != mySpace[suffixArray[i] + k - j]) {
 				if (myTarget[k] < mySpace[suffixArray[i] + k - j]) {
 					return 1;
 				}
@@ -224,33 +226,23 @@ public class Frequencer implements FrequencerInterface {
 			frequencerObject.setSpace("Hi Ho Hi Ho".getBytes());
 			frequencerObject.printSuffixArray(); // you may use this line for DEBUG
 			/*
-			 * Example from "Hi Ho Hi Ho" 
-			 * 0: Hi Ho 
-			 * 1: Ho 
-			 * 2: Ho Hi Ho 
-			 * 3:Hi Ho 
-			 * 4:Hi Ho Hi Ho
-			 * 5:Ho 
-			 * 6:Ho Hi Ho 
-			 * 7:i Ho 
-			 * 8:i Ho Hi Ho 
-			 * 9:o 
-			 * A:o Hi Ho
+			 * Example from "Hi Ho Hi Ho" 0: Hi Ho 1: Ho 2: Ho Hi Ho 3:Hi Ho 4:Hi Ho Hi Ho
+			 * 5:Ho 6:Ho Hi Ho 7:i Ho 8:i Ho Hi Ho 9:o A:o Hi Ho
 			 */
 
 			frequencerObject.setTarget("H".getBytes());
 			//
 			// **** Please write code to check subByteStartIndex, and subByteEndIndex
 			//
-			if (frequencerObject.subByteStartIndex(0, 1)==3) {
+			if (frequencerObject.subByteStartIndex(0, 1) == 3) {
 				System.out.println("OK");
-			}else {
+			} else {
 				System.out.println("WRONG");
 			}
-			
-			if (frequencerObject.subByteEndIndex(0, 1)==7) {
+
+			if (frequencerObject.subByteEndIndex(0, 1) == 7) {
 				System.out.println("OK");
-			}else {
+			} else {
 				System.out.println("WRONG");
 			}
 
