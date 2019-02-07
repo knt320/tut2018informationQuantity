@@ -105,6 +105,9 @@ public class Frequencer implements FrequencerInterface {
 		//
 		// **** Please write code here... ***
 		//
+		//
+		suffixArray = this.mergeSort(suffixArray);
+		/*
 		for (int i = 0; i < space.length; i++) {
 			for (int j = i + 1; j < space.length; j++) {
 				if (this.suffixCompare(suffixArray[i], suffixArray[j]) == 1) {
@@ -114,6 +117,51 @@ public class Frequencer implements FrequencerInterface {
 				}
 			}
 		}
+		*/
+	}
+
+	private int[] mergeSort(int[] list) {
+		int[] answer = new int[list.length];
+		if (list.length > 1) {
+			int[] listA = new int[list.length / 2];
+			int[] listB = new int[list.length - list.length / 2];
+			for (int i = 0; i < list.length / 2; i++) {
+				listA[i] = list[i];
+			}
+			listA = this.mergeSort(listA);
+
+			for (int i = listA.length; i < list.length; i++) {
+				listB[i - listA.length] = list[i];
+			}
+			listB = this.mergeSort(listB);
+
+			answer = this.merge(listA, listB);
+		} else {
+			answer = list;
+		}
+		return answer;
+	}
+
+	private int[] merge(int[] a, int[] b) {
+		int[] answer = new int[a.length + b.length];
+		int countA = 0;
+		int countB = 0;
+		for (int i = 0; i < a.length + b.length ; i++) {
+			if (countA == a.length) {
+				answer[i] = b[countB];
+				countB++;
+			} else if (countB == b.length) {
+				answer[i] = a[countA];
+				countA++;
+			} else if (this.suffixCompare(a[countA], b[countB]) == 1) {
+				answer[i] = b[countB];
+				countB++;
+			} else {
+				answer[i] = a[countA];
+				countA++;
+			}
+		}
+		return answer;
 	}
 
 	private int targetCompare(int i, int j, int end) {
