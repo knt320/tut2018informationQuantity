@@ -108,16 +108,11 @@ public class Frequencer implements FrequencerInterface {
 		//
 		suffixArray = this.mergeSort(suffixArray);
 		/*
-		for (int i = 0; i < space.length; i++) {
-			for (int j = i + 1; j < space.length; j++) {
-				if (this.suffixCompare(suffixArray[i], suffixArray[j]) == 1) {
-					int tmp = suffixArray[i];
-					suffixArray[i] = suffixArray[j];
-					suffixArray[j] = tmp;
-				}
-			}
-		}
-		*/
+		 * for (int i = 0; i < space.length; i++) { for (int j = i + 1; j <
+		 * space.length; j++) { if (this.suffixCompare(suffixArray[i], suffixArray[j])
+		 * == 1) { int tmp = suffixArray[i]; suffixArray[i] = suffixArray[j];
+		 * suffixArray[j] = tmp; } } }
+		 */
 	}
 
 	private int[] mergeSort(int[] list) {
@@ -146,7 +141,7 @@ public class Frequencer implements FrequencerInterface {
 		int[] answer = new int[a.length + b.length];
 		int countA = 0;
 		int countB = 0;
-		for (int i = 0; i < a.length + b.length ; i++) {
+		for (int i = 0; i < a.length + b.length; i++) {
 			if (countA == a.length) {
 				answer[i] = b[countB];
 				countB++;
@@ -214,9 +209,35 @@ public class Frequencer implements FrequencerInterface {
 		//
 		// **** Please write code here... ***
 		//
+/*
 		for (int i = 0; i < mySpace.length; i++) {
 			if (targetCompare(i, start, end) == 0) {
 				return i;
+			}
+		}
+*/
+		int tmp = targetCompare(mySpace.length / 2, start, end);
+		boolean flag=false;
+		if (targetCompare(0,start,end)==0) {
+			return 0;
+		}
+		
+		if (tmp == 0) {
+			flag=true;
+		}
+		if (tmp == 1||flag) {
+			for (int j = (mySpace.length / 2) - 1;j >= 0 ; j--) {
+				if (targetCompare(j, start, end) == 0) {
+					flag = true;
+				} else if (flag) {
+					return j+1;
+				}
+			}
+		} else {
+			for (int j = (mySpace.length / 2) + 1;j < mySpace.length ; j++) {
+				if (targetCompare(j, start, end) == 0) {
+					return j;
+				}
 			}
 		}
 		return suffixArray.length; // This line should be modified.
@@ -283,9 +304,9 @@ public class Frequencer implements FrequencerInterface {
 			// **** Please write code to check subByteStartIndex, and subByteEndIndex
 			//
 			if (frequencerObject.subByteStartIndex(0, 1) == 3) {
-				System.out.println("OK");
+				System.out.println("OK" + frequencerObject.subByteStartIndex(0, 1));
 			} else {
-				System.out.println("WRONG");
+				System.out.println("WRONG" + frequencerObject.subByteStartIndex(0, 1));
 			}
 
 			if (frequencerObject.subByteEndIndex(0, 1) == 7) {
