@@ -304,9 +304,9 @@ public class Frequencer implements FrequencerInterface {
 			// **** Please write code to check subByteStartIndex, and subByteEndIndex
 			//
 			if (frequencerObject.subByteStartIndex(0, 1) == 3) {
-				System.out.println("OK" + frequencerObject.subByteStartIndex(0, 1));
+				System.out.println("OK");
 			} else {
-				System.out.println("WRONG" + frequencerObject.subByteStartIndex(0, 1));
+				System.out.println("WRONG");
 			}
 
 			if (frequencerObject.subByteEndIndex(0, 1) == 7) {
